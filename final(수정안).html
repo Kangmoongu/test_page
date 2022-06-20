@@ -1,0 +1,666 @@
+<!DOCTYPE html>	
+<html>	
+    <head>
+        <meta charset="UTF-8">
+        <title>전공 추천 페이지</title>
+        <style>
+            footer {
+                display:none;
+            }
+            section{
+                display:none;
+            }
+            #result{
+                display:none;
+            }
+
+            #head {position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);}
+            #start {font-size: 20px; font-weight: bold;}
+            #head > h1 {font-weight: bold; font-size: 55px; margin: 40px;}
+            #head > h2 {margin: 30px; font-size: 35px; margin-bottom: 10%;}
+            #end {font-size: 20px; font-weight: bold;}
+            #end1 {text-align: center; margin-bottom: 10%;}
+            #headline {text-align: center; background-color: burlywood; padding: 0.5%; border-radius: 10px;}
+            #headline > h2 {color: white; font-size: 35px;}
+            #headline > p {font-size: 17px; font-weight: bold; background-color: antiquewhite; padding: 5px; border-radius: 10px;}
+            #headline > h1{color:brown; font-size: 18px; font-weight: 900; text-align: right; background:yellow; top: 10px; right: 10px; padding:5px; margin-bottom: 0px;}
+
+            html {background-color:antiquewhite;}
+            header {text-align: center;}
+            article > h2 {font-weight: bold; text-indent: 10px; margin: 15px; text-align: center;}
+            form {font-size: 23px; font-weight: bold; text-align: center; border-radius: 20px; padding: 5px; background-color:bisque; margin: 0; border: 0;}
+            label {font-weight: bold;}
+            #p1 {width: 50px; height: 50px; position:relative; top: 18px;}
+            #p2 {width: 40px; height: 40px; position:relative; top: 12px;}
+            #p3 {width: 30px; height: 30px; position:relative; top: 8px;}
+            #p4 {width: 40px; height: 40px; position:relative; top: 12px;}
+            #p5 {width: 50px; height: 50px; position:relative; top: 18px;}
+            form {line-height: 100px;}
+            #y1 {color:dodgerblue;}
+            #n1 {color:orangered;}
+            #time {border-radius: 10px;}
+            #medical > ul > li {font-weight: bold;}
+
+            #result > h1 {text-align: center; font-size: 40px;}
+            #result > h2 {padding:1%; width: max-content; background-color:bisque; border-radius: 20px;}
+            #result2 {padding:1%; background-color:bisque; border-radius: 20px;}
+            #result2 > div > span {padding: 10px;}
+            #top {position: fixed; right: 10px;  bottom: 15px;}
+        </style>
+        <script>
+           function starttest(){
+            document.getElementById("head").style.display ="none";
+            document.getElementById("foot").style.display ="block";
+            document.getElementById("sect").style.display ="block";
+            document.getElementById("medical").style.display ="none";
+            document.getElementById("business").style.display ="none";
+            document.getElementById("education").style.display ="none";
+            document.getElementById("humanities").style.display ="none";
+            document.getElementById("nature").style.display ="none";
+            document.getElementById("art").style.display ="none";
+            document.getElementById("social").style.display ="none";
+            document.getElementById("it").style.display ="none";
+            document.getElementById("forestry").style.display ="none";
+            document.getElementById("agriculture").style.display ="none";
+            document.getElementById("liberal").style.display ="none"; 
+
+            var Minutes = 60*2, 
+                display = document.getElementById("time");
+            startTimer(Minutes, display);
+
+
+            };
+        
+            function resulttest(){
+            if(CalculateSum()==false){
+                return;
+            }
+            document.getElementById("sect").style.display ="none";
+            document.getElementById("result").style.display ="block";
+            clearInterval(a);
+            }
+
+        </script>
+        <script>
+            function startTimer(duration, display) {
+            var timer = duration, minutes, seconds;
+
+            a = setInterval(function () {
+                minutes = parseInt(timer / 60);
+                seconds = parseInt(timer % 60);
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+                
+                display.innerHTML = "※ 제한 시간 "+ minutes + ":" + seconds + "&nbsp&nbsp";
+                
+                // onclick 다시 체크해봐야 함.  
+                if (--timer < 0) {
+                    timer = duration;
+                    alert("제한시간이 다 되었습니다. 다시 시도해 주세요."); 
+                    clearInterval(a);
+                    retest();
+                    
+                }
+            }, 1000);
+            
+        };
+     
+        </script>
+        <script>
+            function CalculateSum() { 
+                var sum1=0, sum2=0, sum3=0, sum4=0, sum5=0, sum6=0, sum7=0, sum8=0, sum9=0, sum10=0;
+                var temp;
+                var fsum = new Array;
+                for(var j=1;j<=20;j++){
+                    var check = document.getElementsByName(j);   
+                    var pass = false;
+                    
+                    for(var i=0;i<check.length;i++){
+                        if(check[i].checked==true){
+                            pass = true; 
+                        if(j==1||j==2) sum1+=parseInt(check[i].value);
+                        if(j==3||j==4) sum2+=parseInt(check[i].value);
+                        if(j==5||j==6) sum3+=parseInt(check[i].value);
+                        if(j==7||j==8) sum4+=parseInt(check[i].value);
+                        if(j==9||j==10) sum5+=parseInt(check[i].value);
+                        if(j==11||j==12) sum6+=parseInt(check[i].value);
+                        if(j==13||j==14) sum7+=parseInt(check[i].value);
+                        if(j==15||j==16) sum8+=parseInt(check[i].value);
+                        if(j==17||j==18) sum9+=parseInt(check[i].value);
+                        if(j==19||j==20) sum10+=parseInt(check[i].value);     
+                        }
+                    }
+                    
+                    if(pass == false){
+                        fsum.push(j+'번');
+                    }
+                }
+
+                if(fsum.length > 0) {alert("다음 항목에 응답을 해주시기 바랍니다.\n\n"+fsum); return false;} 
+
+                var nsum = [];
+                nsum[0]=sum1;
+                nsum[1]=sum2;
+                nsum[2]=sum3;
+                nsum[3]=sum4;
+                nsum[4]=sum5;
+                nsum[5]=sum6;
+                nsum[6]=sum7;
+                nsum[7]=sum8;
+                nsum[8]=sum9;
+                nsum[9]=sum10;
+                var highest = nsum[0];            // 최고점
+                var n=1;                          // 동점자 수 (동점자 없을때 n=1, 있으면 n=2이상.)
+                var highestsum = [];              // 최고점번호 (동점자없을때 highestsum[0]에만 값이 들어있음. 동점자있을때 highestsum[1], highestsum[2], highestsum[3]...)
+                highestsum[0] = 0;         
+               for(var l=1; l<10; l++){
+                    if(highest < nsum[l]){
+                        highest = nsum[l];
+                        highestsum[0] = l;
+                    }
+               }
+               for(var k=1; k<10; k++){
+                    if((k!=highestsum[0])&&(highest == nsum[k])){
+                            // alert("sum"+(k+1)+" 이 sum"+(highestsum[0]+1)+"와 점수가 같게 나왔습니다.");
+                            highestsum[n] = k
+                            n++;
+                        }
+               }
+
+               if(n<=2) {
+                resultprint(highestsum[0]+1);
+                if(n<2) alert("결과 페이지로 이동합니다.");
+               }
+                
+               if(n==2){
+                resultprint(highestsum[1]+1);
+                alert("2가지 항목이 동점입니다. 결과 페이지로 이동합니다.");
+               }
+               if(n>=3){
+                resultprint(11);
+                alert("3가지 이상의 항목이 동점입니다. 자유전공학부 페이지로 이동합니다.");
+               }
+               return ;
+            }
+            function resultprint(resultvalue) {
+                switch(resultvalue){
+                    case 1:
+                    document.getElementById("medical").style.display ="block";
+                        break;
+                    case 2:
+                    document.getElementById("business").style.display ="block";
+                        break;    
+                    case 3:
+                    document.getElementById("education").style.display ="block";
+                        break;   
+                    case 4:
+                    document.getElementById("humanities").style.display ="block";
+                        break; 
+                    case 5:
+                    document.getElementById("nature").style.display ="block";
+                        break;  
+                    case 6:
+                    document.getElementById("art").style.display ="block";
+                        break;
+                    case 7:
+                    document.getElementById("social").style.display ="block";
+                        break;
+                    case 8:
+                    document.getElementById("it").style.display ="block";
+                        break;
+                    case 9:
+                    document.getElementById("forestry").style.display ="block";
+                        break;
+                    case 10:
+                    document.getElementById("agriculture").style.display ="block";
+                        break;
+                    case 11:
+                    document.getElementById("liberal").style.display ="block";                         
+                        break;                         
+                }
+            }
+        </script>
+        <script>
+            function ScrolltoTop() {
+                    window.scrollTo({
+                    top:0,
+                    behavior: "smooth"
+                });
+            }
+            function retest() {
+                location.reload();
+                location.replace(location.href);
+                location.href = location.href;
+            }
+        </script>
+
+    </head>
+
+    <header id="head">
+        <h1>사용자 적성 검사</h1>
+        <h2> 20가지 문답을 통하여 사용자의 성향을 분석하고 이를 바탕으로 적합한 대학 및 전공을 추천해드립니다.<br>
+        </h2>
+        <button id="start" onclick="starttest()">시작하기</button>
+    </header>
+    <nav>
+
+    </nav>
+    <!--문제-->
+    <section id="sect">
+        <article id="headline">
+            <h2>사용자 적성 검사</h2>
+            <p>문항은 총 20개 입니다.</p>
+            <p>최대한 '중립'을 선택하지 마십시오.</p>
+            <h1 id="time">※ 제한 시간 00:00&nbsp&nbsp</h1>
+            
+
+        </article>
+        
+        <article id="q1-1">
+            <h2>1. 남을 위해 희생하는 것을 꺼리지 않는다</h2>
+            <form>
+                <span id="y1">그렇다&nbsp&nbsp&nbsp&nbsp</span>
+                <label>
+                    <input	type="radio"	name="1"	value="5" id="p1">
+                    <input	type="radio"	name="1"	value="4" id="p2">
+                    <input	type="radio"	name="1"	value="3" id="p3">
+                    <input	type="radio"	name="1"	value="2" id="p4">
+                    <input	type="radio"	name="1"	value="1" id="p5">
+                </label>
+                <span id="n1">&nbsp&nbsp&nbsp&nbsp그렇지 않다</span>
+            </form>
+        </article>
+        <article id="q1-2">
+            <h2>2. 학구열이 높은 편이라는 소리를 자주 듣는다</h2>
+            <form>
+                <span id="y1">그렇다&nbsp&nbsp&nbsp&nbsp</span>
+                <label>
+                    <input	type="radio"	name="2"	value="5" id="p1">
+                    <input	type="radio"	name="2"	value="4" id="p2">
+                    <input	type="radio"	name="2"	value="3" id="p3">
+                    <input	type="radio"	name="2"	value="2" id="p4">
+                    <input	type="radio"	name="2"	value="1" id="p5">
+                </label>
+                <span id="n1">&nbsp&nbsp&nbsp&nbsp그렇지 않다</span>
+            </form>
+        </article>
+        <article id="q2-1">
+            <h2>3. 시사, 경제, 금융에 관심이 있다</h2>
+            <form>
+                <span id="y1">그렇다&nbsp&nbsp&nbsp&nbsp</span>
+                <label>
+                    <input	type="radio"	name="3"	value="5" id="p1">
+                    <input	type="radio"	name="3"	value="4" id="p2">
+                    <input	type="radio"	name="3"	value="3" id="p3">
+                    <input	type="radio"	name="3"	value="2" id="p4">
+                    <input	type="radio"	name="3"	value="1" id="p5">
+                </label>
+                <span id="n1">&nbsp&nbsp&nbsp&nbsp그렇지 않다</span>
+            </form>
+        </article>
+        <article id="q2-2">
+            <h2>4. 주식, 펀드 등 투자를 해본 경험이 많다</h2>
+            <form>
+                <span id="y1">그렇다&nbsp&nbsp&nbsp&nbsp</span>
+                <label>
+                    <input	type="radio"	name="4"	value="5" id="p1">
+                    <input	type="radio"	name="4"	value="4" id="p2">
+                    <input	type="radio"	name="4"	value="3" id="p3">
+                    <input	type="radio"	name="4"	value="2" id="p4">
+                    <input	type="radio"	name="4"	value="1" id="p5">
+                </label>
+                <span id="n1">&nbsp&nbsp&nbsp&nbsp그렇지 않다</span>
+            </form>
+        </article>
+        <article id="q3-1">
+            <h2>5. 남을 가르치는 것을 좋아한다</h2>
+            <form>
+                <span id="y1">그렇다&nbsp&nbsp&nbsp&nbsp</span>
+                <label>
+                    <input	type="radio"	name="5"	value="5" id="p1">
+                    <input	type="radio"	name="5"	value="4" id="p2">
+                    <input	type="radio"	name="5"	value="3" id="p3">
+                    <input	type="radio"	name="5"	value="2" id="p4">
+                    <input	type="radio"	name="5"	value="1" id="p5">
+                </label>
+                <span id="n1">&nbsp&nbsp&nbsp&nbsp그렇지 않다</span>
+            </form>
+        </article>
+        <article id="q3-2">
+            <h2>6. 주변에서 리더십이 있다는 소리를 종종 듣는다</h2>
+            <form>
+                <span id="y1">그렇다&nbsp&nbsp&nbsp&nbsp</span>
+                <label>
+                    <input	type="radio"	name="6"	value="5" id="p1">
+                    <input	type="radio"	name="6"	value="4" id="p2">
+                    <input	type="radio"	name="6"	value="3" id="p3">
+                    <input	type="radio"	name="6"	value="2" id="p4">
+                    <input	type="radio"	name="6"	value="1" id="p5">
+                </label>
+                <span id="n1">&nbsp&nbsp&nbsp&nbsp그렇지 않다</span>
+            </form>
+        </article>
+        <article id="q4-1">
+            <h2>7. 시, 소설 등 문학작품을 즐긴다</h2>
+            <form>
+                <span id="y1">그렇다&nbsp&nbsp&nbsp&nbsp</span>
+                <label>
+                    <input	type="radio"	name="7"	value="5" id="p1">
+                    <input	type="radio"	name="7"	value="4" id="p2">
+                    <input	type="radio"	name="7"	value="3" id="p3">
+                    <input	type="radio"	name="7"	value="2" id="p4">
+                    <input	type="radio"	name="7"	value="1" id="p5">
+                </label>
+                <span id="n1">&nbsp&nbsp&nbsp&nbsp그렇지 않다</span>
+            </form>
+        </article>
+        <article id="q4-2">
+            <h2>8. 순우리말, 외래어, 한자어를 구분할 수 있다</h2>
+            <form>
+                <span id="y1">그렇다&nbsp&nbsp&nbsp&nbsp</span>
+                <label>
+                    <input	type="radio"	name="8"	value="5" id="p1">
+                    <input	type="radio"	name="8"	value="4" id="p2">
+                    <input	type="radio"	name="8"	value="3" id="p3">
+                    <input	type="radio"	name="8"	value="2" id="p4">
+                    <input	type="radio"	name="8"	value="1" id="p5">
+                </label>
+                <span id="n1">&nbsp&nbsp&nbsp&nbsp그렇지 않다</span>
+            </form>
+        </article>
+        <article id="q5-1">
+            <h2>9. 본인은 탐구심이 강하다고 생각한다</h2>
+            <form>
+                <span id="y1">그렇다&nbsp&nbsp&nbsp&nbsp</span>
+                <label>
+                    <input	type="radio"	name="9"	value="5" id="p1">
+                    <input	type="radio"	name="9"	value="4" id="p2">
+                    <input	type="radio"	name="9"	value="3" id="p3">
+                    <input	type="radio"	name="9"	value="2" id="p4">
+                    <input	type="radio"	name="9"	value="1" id="p5">
+                </label>
+                <span id="n1">&nbsp&nbsp&nbsp&nbsp그렇지 않다</span>
+            </form>
+        </article>
+        <article id="q5-2">
+            <h2>10. 본인은 수학적 사고력이 높다고 생각한다</h2>
+            <form>
+                <span id="y1">그렇다&nbsp&nbsp&nbsp&nbsp</span>
+                <label>
+                    <input	type="radio"	name="10"	value="5" id="p1">
+                    <input	type="radio"	name="10"	value="4" id="p2">
+                    <input	type="radio"	name="10"	value="3" id="p3">
+                    <input	type="radio"	name="10"	value="2" id="p4">
+                    <input	type="radio"	name="10"	value="1" id="p5">
+                </label>
+                <span id="n1">&nbsp&nbsp&nbsp&nbsp그렇지 않다</span>
+            </form>
+        </article>
+        <article id="q6-1">
+            <h2>11. 음악이나 그림을 1년 이상 배운 적이 있다</h2>
+            <form>
+                <span id="y1">그렇다&nbsp&nbsp&nbsp&nbsp</span>
+                <label>
+                    <input	type="radio"	name="11"	value="5" id="p1">
+                    <input	type="radio"	name="11"	value="4" id="p2">
+                    <input	type="radio"	name="11"	value="3" id="p3">
+                    <input	type="radio"	name="11"	value="2" id="p4">
+                    <input	type="radio"	name="11"	value="1" id="p5">
+                </label>
+                <span id="n1">&nbsp&nbsp&nbsp&nbsp그렇지 않다</span>
+            </form>
+        </article>
+        <article id="q6-2">
+            <h2>12. 새로운 악상이나 풍경이 떠오른다</h2>
+            <form>
+                <span id="y1">그렇다&nbsp&nbsp&nbsp&nbsp</span>
+                <label>
+                    <input	type="radio"	name="12"	value="5" id="p1">
+                    <input	type="radio"	name="12"	value="4" id="p2">
+                    <input	type="radio"	name="12"	value="3" id="p3">
+                    <input	type="radio"	name="12"	value="2" id="p4">
+                    <input	type="radio"	name="12"	value="1" id="p5">
+                </label>
+                <span id="n1">&nbsp&nbsp&nbsp&nbsp그렇지 않다</span>
+            </form>
+        </article>
+        <article id="q7-1">
+            <h2>13. 사회, 문화 등의 이슈에 관심이 많다</h2>
+            <form>
+                <span id="y1">그렇다&nbsp&nbsp&nbsp&nbsp</span>
+                <label>
+                    <input	type="radio"	name="13"	value="5" id="p1">
+                    <input	type="radio"	name="13"	value="4" id="p2">
+                    <input	type="radio"	name="13"	value="3" id="p3">
+                    <input	type="radio"	name="13"	value="2" id="p4">
+                    <input	type="radio"	name="13"	value="1" id="p5">
+                </label>
+                <span id="n1">&nbsp&nbsp&nbsp&nbsp그렇지 않다</span>
+            </form>
+        </article>        
+        <article id="q7-2">
+            <h2>14. 현재 시행되는 정치, 정책에 관심이 많다</h2>
+            <form>
+                <span id="y1">그렇다&nbsp&nbsp&nbsp&nbsp</span>
+                <label>
+                    <input	type="radio"	name="14"	value="5" id="p1">
+                    <input	type="radio"	name="14"	value="4" id="p2">
+                    <input	type="radio"	name="14"	value="3" id="p3">
+                    <input	type="radio"	name="14"	value="2" id="p4">
+                    <input	type="radio"	name="14"	value="1" id="p5">
+                </label>
+                <span id="n1">&nbsp&nbsp&nbsp&nbsp그렇지 않다</span>
+            </form>
+        </article>
+        <article id="q8-1">
+            <h2>15. 기계를 다루는 것에 흥미가 있다</h2>
+            <form>
+                <span id="y1">그렇다&nbsp&nbsp&nbsp&nbsp</span>
+                <label>
+                    <input	type="radio"	name="15"	value="5" id="p1">
+                    <input	type="radio"	name="15"	value="4" id="p2">
+                    <input	type="radio"	name="15"	value="3" id="p3">
+                    <input	type="radio"	name="15"	value="2" id="p4">
+                    <input	type="radio"	name="15"	value="1" id="p5">
+                </label>
+                <span id="n1">&nbsp&nbsp&nbsp&nbsp그렇지 않다</span>
+            </form>
+        </article>
+        <article id="q8-2">
+            <h2>16. 문제가 발생했을 때 이를 분석하고 해결하는 것을 좋아한다</h2>
+            <form>
+                <span id="y1">그렇다&nbsp&nbsp&nbsp&nbsp</span>
+                <label>
+                    <input	type="radio"	name="16"	value="5" id="p1">
+                    <input	type="radio"	name="16"	value="4" id="p2">
+                    <input	type="radio"	name="16"	value="3" id="p3">
+                    <input	type="radio"	name="16"	value="2" id="p4">
+                    <input	type="radio"	name="16"	value="1" id="p5">
+                </label>
+                <span id="n1">&nbsp&nbsp&nbsp&nbsp그렇지 않다</span>
+            </form>
+        </article>
+        <article id="q9-1">
+            <h2>17. 기후변화 · 환경오염에 관심이 있다</h2>
+            <form>
+                <span id="y1">그렇다&nbsp&nbsp&nbsp&nbsp</span>
+                <label>
+                    <input	type="radio"	name="17"	value="5" id="p1">
+                    <input	type="radio"	name="17"	value="4" id="p2">
+                    <input	type="radio"	name="17"	value="3" id="p3">
+                    <input	type="radio"	name="17"	value="2" id="p4">
+                    <input	type="radio"	name="17"	value="1" id="p5">
+                </label>
+                <span id="n1">&nbsp&nbsp&nbsp&nbsp그렇지 않다</span>
+            </form>
+        </article>        
+        <article id="q9-2">
+            <h2>18. 산림과 관련된 관광산업에 관심이 있다</h2>
+            <form>
+                <span id="y1">그렇다&nbsp&nbsp&nbsp&nbsp</span>
+                <label>
+                    <input	type="radio"	name="18"	value="5" id="p1">
+                    <input	type="radio"	name="18"	value="4" id="p2">
+                    <input	type="radio"	name="18"	value="3" id="p3">
+                    <input	type="radio"	name="18"	value="2" id="p4">
+                    <input	type="radio"	name="18"	value="1" id="p5">
+                </label>
+                <span id="n1">&nbsp&nbsp&nbsp&nbsp그렇지 않다</span>
+            </form>
+        </article>
+        <article id="q10-1">
+            <h2>19. 유전자 변형 농·식물에 경각심을 가지고 있다</h2>
+            <form>
+                <span id="y1">그렇다&nbsp&nbsp&nbsp&nbsp</span>
+                <label>
+                    <input	type="radio"	name="19"	value="5" id="p1">
+                    <input	type="radio"	name="19"	value="4" id="p2">
+                    <input	type="radio"	name="19"	value="3" id="p3">
+                    <input	type="radio"	name="19"	value="2" id="p4">
+                    <input	type="radio"	name="19"	value="1" id="p5">
+                </label>
+                <span id="n1">&nbsp&nbsp&nbsp&nbsp그렇지 않다</span>
+            </form>
+        </article>
+        <article id="q10-2">
+            <h2>20. 농작물을 직접 재배해 본 경험이 있다</h2>
+            <form>
+                <span id="y1">그렇다&nbsp&nbsp&nbsp&nbsp</span>
+                <label>
+                    <input	type="radio"	name="20"	value="5" id="p1">
+                    <input	type="radio"	name="20"	value="4" id="p2">
+                    <input	type="radio"	name="20"	value="3" id="p3">
+                    <input	type="radio"	name="20"	value="2" id="p4">
+                    <input	type="radio"	name="20"	value="1" id="p5">
+                </label>
+                <span id="n1">&nbsp&nbsp&nbsp&nbsp그렇지 않다</span>
+            </form>
+        </article>
+        <br>
+        <br>
+        <p id="end1"><button id="end" onclick="resulttest()">결과 확인</button></p>
+        <button id="top" onclick="ScrolltoTop()"><img src="media/top.png"  width="25" height="30" alt="스크롤 맨 위로"></button>
+    </section>
+    <!--문제 끝-->
+    <div id="result">
+        <h1>결 과</h1>
+        <div id="result2">
+            <div id="medical">
+                <h2><간호/의학/약학 대학></h2>
+                <hr>
+                <h3>대학 설명</h3>
+                    <ul>
+                        <li>간호대학</li><br>
+                        <span>강원대학교 간호대학은 1996년 간호학과로 설립된 후 '실천하는 간호전문지식인의 양성'이라는 비전을 바탕으로 간호교육과 연구 및 지역사회 봉사에 매진하며 발전해 왔습니다.
+                        간호대학 졸업생들 대부분이 전국의 우수한 의료기관 및 다양한 분야에 취업을 하여 활동하고 있습니다.</span><br><br>
+                        <a href="https://nurse.kangwon.ac.kr/nurse/index.do">강원대학교 간호대학</a><br><br>
+                        <li>의과대학</li><br>
+                        <span>강원대학교 의예과는 1995년 자연과학대학 내에 처음으로 개설되었고 2008년 의과대학이 의학전문대학원으로 전환됨에 따라, 2005년까지 의예과생을 선발하였습니다. 2019년 10월 교육부의 학제 전환 승인으로 2023년부터 의학전문대학원은 다시 의과대학으로 전환될 예정이며, 이를 위해 2021년부터 의과대학 내에 의예과가 신설되었습니다.
+                        의예과에서는 본격적인 의학교육을 받기 전에 필요한 기초과학, 인문과학, 사회과학 등 다양한 분야의 기본지식을 2년간 체계적으로 구성된 교육과정을 통해 교육 받게 되고, 졸업 후 진로로는 임상의사 및 기초의학자 등을 배출하고 있습니다. </span><br><br>
+                        <a href="https://smed.kangwon.ac.kr/smed/index.do">강원대학교 의과대학</a><br><br>
+                        <li>약학대학</li><br>
+                        <span>강원대학교 약학과는 1982년 설립된 강원지역의 유일한 약사배출 교육기관으로, 지역의료 및 보건향상과 약사직능의 전문가를 육성하는 데 중추적인 역할을 수행해 왔습니다.
+                        2011년 6년제를 도입함으로써 체계적이고 선진 교육과정을 정립하여 전문 약사를 배출하는 데 크게 이바지하고 있으며, 수업 이론 외 병원약국, 제약회사, 지역약국 등 다양한 현장경험을 체험할 수 있는 기회를 제공함으로써 국민보건과 건강복지에 핵심적인 역할을 담당하는 약사를 배출하고 있습니다. </span><br><br>
+                        <a href="https://pharmacy.kangwon.ac.kr/pharmacy/index.do">강원대학교 약학대학</a><br><br>
+                    </ul>
+              
+            </div>
+            <div id="business">
+                <h2><경영 대학></h2>
+                <hr>
+                <h3>대학 설명</h3>
+                <span>1970년도에 설립된 강원대학교 경영대학은 지속적으로 성장하고 발전하면서 지금의 선도적이고 융합적인 학사구조를 만들어 왔습니다. 
+                경영학 전공을 모태로 경제학 전공과 회계학 전공, 국제무역학과 관광경영학이 설립되었고 최근에는 정보통계학 전공이 함께하여 2개 학부(4개 전공)–2개 학과가 융합적인 교육을 담당하며 향후 4차 산업 현장에서 활약할 역량있는 경영인재를 양성하고 있습니다.</span><br><br>
+                <a href="https://cba.kangwon.ac.kr/cba/index.do">강원대학교 경영대학</a><br><br>
+                
+            </div>
+            <div id="education">
+                <h2><사범 대학></h2>
+                <hr>
+                <h3>대학 설명</h3>
+                <span>강원대학교 사범대학은 중등교사 배출을 위하여 1969년에 설립되었으며, 현재 본교로부터 배출된 7천여 명의 교사들이 강원도 및 서울, 경기 등 전국에서 중등학생의 질 높은 교육과 우리나라 중등교육의 발전을 위해서 매진하고 있습니다.
+                강원대학교 사범대학은 "더 훌륭한 예비교사 양성과 더 많은 현장교사 배출"을 목표로 우수한 교수진, 능력 있는 행정직원, 그리고 뛰어난 학생들이 함께 힘을 모아 지속적으로 노력하고 있으며, 매년 많은 수의 현장교사를 배출하고 있습니다.</span><br><br>
+                <a href="https://educatio.kangwon.ac.kr/educatio/index.do">강원대학교 사범대학</a><br><br>
+            </div>
+            <div id="humanities">
+                <h2><인문 대학></h2>
+                <hr>
+                <h3>대학 설명</h3>
+                <span>인문학은 '언어'를 토대로 인간과 인간의 경험을 연구하는 학문으로, 인류가 존재하는 한 지속될 수밖에 없는 학문입니다. 또한, 경험 세계는 끊임없이 변화하고 다층적인 의미를 지니고 있어 다른 학문과 구별되게 자유의 학문인 것이 특징입니다. 
+                강원대학교 인문대학은 언어, 문학, 역사, 철학을 포함한 8개의 전공분야로 나뉘어져 있습니다. 또한 융합학문인 ‘인문예술치료학’을 복수전공 혹은 부전공으로 이수할 수 있도록 함으로써 인문학도의 사회 진출을 도모하고 있습니다. 광범위한 교양과 심오한 전공지식을 쌓으며 창의적이고 지혜롭게 문제를 해결하고, 인류의 공공선을 실천하는 인문인을 배출하고 있습니다.  </span><br><br>
+                <a href="https://humanities.kangwon.ac.kr/humanities/index.do">강원대학교 인문대학</a><br><br>
+            </div>
+            <div id="nature">
+                <h2><자연과학 대학></h2>
+                <hr>
+                <h3>대학 설명</h3>
+                <span>자연과학대학은 자연과학 제분야에 대한 기초이론과 지식을 습득하고 응용력을 갖춘 기초과학 분야 전문인력 양성과 다양한 실습을 바탕으로 실무형 전문지식과 자질을 갖춘 실무형 고급인력을 양성하고 있습니다.
+                졸업 후 진로는 바로 취업을 하는 경우와 대학원에 진학한 후 취업하는 경우로 크게 나뉘는데 일반적으로 산업체, 연구계, 학계 등에 취업하게 되며, 다양한 학문 영역이 포함되므로 학문영역에 따라 취업 영역의 폭이 매우 다양합니다. </span><br><br>
+                <a href="https://natursci.kangwon.ac.kr/natursci/index.do">강원대학교 자연과학대학</a><br><br>
+
+            </div>
+            <div id="art">
+                <h2><문화예술 대학></h2>
+                <hr>
+                <h3>대학 설명</h3>
+                <span>타 대학들과 구별되는 강원대학교 문화예술대학의 특징은 문화예술대학과 공과대학이 융합되어, 예술과 공학의 경계를 넘나들며 글로벌 시대의 혁신을 주도할 창의력을 지닌 인재상을 추구하고 있습니다.
+                ACE College(College of Art, Culture and Engineering)는 「1人 1藝」, 「1人 1技」를 기반으로 하는 다양한 다학제적 교양/전공과목들을 개설·운영 중이며, 아트앤테크놀로지학과 신설, AI응용연구회 운영 등 미래융합기술에 대응하는 혁신적인 프로그램을 통해 4차산업혁명시대에 대비하고 있습니다. </span><br><br>
+                <a href="https://ace.kangwon.ac.kr/ace/index.do">강원대학교 문화예술대학</a><br><br>
+            </div>
+            <div id="social">
+                <h2><사회과학 대학></h2>
+                <hr>
+                <h3>대학 설명</h3>
+                <span>사회과학은 사회현상에 대한 과학적 탐구를 통하여 비판적, 실천적 지성과 통합적 감성을 함양하고자 하는 학문입니다. 강원대학교 사회과학대학은 문화인류학과, 부동산학과, 사회학과, 신문방송학과, 정치외교학과, 행정심리학부로 구성되어 있으며, 모든 학과가 넓은 교양지식과 깊은 전공지식을 두루 학습하는 것을 목표로 합니다.
+                사회과학대학은 인간, 사회, 국가, 그리고 세계에 대한 관심이 두드러진 학생들을 환영하며, 넓은 독서, 깊은 사색, 열린 토론을 좋아하는 학생들이 사회과학대학의 '지성의 광장'을 거쳐 다양한 영역에 진출하고 건강한 전문지성인으로서 민주사회와 인류사회를 위한 다양한 실천에 참여하게 될 것입니다. </span><br><br>
+                <a href="https://social.kangwon.ac.kr/social/index.do">강원대학교 사회과학대학</a><br><br>
+
+            </div>
+            <div id="it">
+                <h2><IT 대학></IT></h2>
+                <hr>
+                <h3>대학 설명</h3>
+                <span>강원대학교 IT대학은 1982년 공과대학에 개설된 전기공학과와 연이어 개설된 전자공학과, 제어계측공학과, 컴퓨터공학과, 정보통신공학과 등 관련 학문분야를 모두 포함하는 대규모 단과대학으로서, 2006년 독립적인 구조를 갖추었으며, 현재 전기공학, 전자공학, 컴퓨터학, IT융합기술, 정보미디어 등을 교육, 연구합니다.
+                전기전자공학과, 전자공학과, 컴퓨터공학과로 나누어 특화된 학생을 모집하며 졸업 후에는 국내외기업, 연구 및 공공 기관, 창업 등으로 사회에 진출하고 있습니다. </span><br><br>
+                <a href="https://forest.kangwon.ac.kr/forest/index.do">강원대학교 IT대학</a><br><br>
+            </div>
+            <div id="forestry">
+                <h2><산림환경과학 대학></h2>
+                <hr>
+                <h3>대학 설명</h3>
+                <span>강원대학교 산림환경과학대학은 1982년 설립된 이래 국내 산림환경과학분야를 선도해 온 역사 깊은 국내 유일의 특성화 단과대학입니다. 현재 강원대학교에는 목재종이과학부(목재과학전공/종이소재과학전공), 산림과학부(산림경영학전공/산림자원학전공), 생태조경디자인학과가 개설되어 있습니다.
+                산림자원의 조성, 경영 및 관리, 산림환경의 보호, 목재의 효율적 이용 및 친환경 첨단소재로의 활용, 펄프·제지 기술의 개발 및 활용, 생태적인 조경의 조성 및 관리 등을 위한 전문적이며 실용적인 지식을 갖춘 고급인재를 양성하고 있으며, 국내·외 에서 중추적인 역할을 담당하고 있습니다. </span><br><br>
+                <a href="https://forest.kangwon.ac.kr/forest/index.do">강원대학교 산림환경과학대학</a><br><br>
+            </div>
+            <div id="agriculture">
+                <h2><농업생명과학 대학></h2>
+                <hr>
+                <h3>대학 설명</h3>
+                <span>농업생명과학대학은 국민의 생존과 국가발전에 있어서 전략적 기본요소인 식량산업을 첨단산업으로 발전시키기 위해 필수적인 핵심전문기술을 연구·개발·응용할 수 있는 고급인력을 양성하고 있습니다. 
+                현재 강원대학교 농업생명과학대학에는 바이오산업공학부, 생물자원과학부, 원예·농업자원경제학부, 환경융합학부, 지역건설공학과, 미래농업융합학부가 개설되어 있으며, 졸업 후에는 농업 관련 국가 연구소에 공무원으로, 또는 전공 관련 출연연구소 및 산업체, 비료 및 농약회사, 건설회사, 유통업체 및 각종 생명과학 연구소 등으로 진출할 수 있습니다. </span><br><br>
+                <a href="https://knucals.kangwon.ac.kr/knucals/index.do">강원대학교 농업생명과학대학</a><br><br>
+            </div>
+            <div id="liberal">
+                <h2><자유전공학부></h2>
+                <hr>
+                <h3>대학 설명</h3>
+                <span>강원대학교 자유전공학부는 다양한 학문, 교양 분야의 접촉과 섭력을 통해 미래사회를 선도할 창의 융합형 인재 양성을 목표로 하고 있습니다.
+                자유전공학부로 입학 후 1년간 전공 및 진로 탐색과정을 거쳐 2학년 진급 시 희망전공을 선택할 수 있습니다. </span><br><br>
+                <a href="https://liberal.kangwon.ac.kr/liberal/index.do">강원대학교 자유전공학부</a><br><br>
+            </div>
+        </article>
+           
+            <br>
+            <br>
+            <p id="retest1"><button id="re" onclick="retest()">다시하기</button></p>
+
+        
+    </div>
+    <footer id="foot">
+        <br>
+        <br>
+                <p style="text-align: right;">2022년 1학기 웹프로그래밍 I팀(강문구, 김건, 김나현)</p>
+    </footer>
+</body>
+</html>
